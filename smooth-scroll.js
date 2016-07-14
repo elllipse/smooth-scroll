@@ -1,15 +1,24 @@
 (function($) {
+	"use strict";
 
-	var $homeLinks = $("a[href^='#']");
-	var $body = $("html, body");
-	var navOffset = 55;
+	//dom elements
+	var $homeLinks = $("a[href^='#']"),
+		$body = $("html, body");
+
+	//settings	
+	var settings = {
+			navOffset : 55,
+			scrollTime : 1000
+		};
+
+	//events
 	$homeLinks.on("click", clickOnHomeLinks);
 
-
 	function moveToTarget(pos) {
-		$body.stop().animate({scrollTop : pos - navOffset}, 1000);
-	}
+		$body.stop().animate({scrollTop : pos - settings.navOffset}, settings.scrollTime);
+	};
 
+	//functions
 	function clickOnHomeLinks(e) {
 		var $this = $(this),
 			target = $this.attr("href"),
@@ -17,6 +26,6 @@
 
 		e.preventDefault();
 		moveToTarget(targetPosition);
-	}
+	};
 
 })(jQuery);
